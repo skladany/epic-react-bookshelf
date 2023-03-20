@@ -2,7 +2,9 @@
 
 ## 📝 Your Notes
 
-Elaborate on your learnings here in `INSTRUCTIONS.md`
+- Bootstrap reboot is still a great starting point for styles
+- Emotion _is_ really awesome! Makes styling components really simple and
+  reusable.
 
 ## Background
 
