@@ -3,12 +3,12 @@ import {jsx} from '@emotion/core'
 
 import * as React from 'react'
 import * as auth from 'auth-provider'
-import * as colors from './styles/colors'
 import {FullPageSpinner} from './components/lib'
+import * as colors from './styles/colors'
 import {client} from './utils/api-client'
+import {useAsync} from './utils/hooks'
 import {AuthenticatedApp} from './authenticated-app'
 import {UnauthenticatedApp} from './unauthenticated-app'
-import {useAsync} from './utils/hooks'
 
 async function getUser() {
   let user = null
@@ -26,10 +26,10 @@ function App() {
   const {
     data: user,
     error,
-    isIdle,
     isLoading,
-    isSuccess,
+    isIdle,
     isError,
+    isSuccess,
     run,
     setData,
   } = useAsync()
@@ -38,8 +38,8 @@ function App() {
     run(getUser())
   }, [run])
 
-  const login = form => run(auth.login(form))
-  const register = form => run(auth.register(form))
+  const login = form => auth.login(form).then(user => setData(user))
+  const register = form => auth.register(form).then(user => setData(user))
   const logout = () => {
     auth.logout()
     setData(null)
